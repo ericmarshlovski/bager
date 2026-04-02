@@ -19,9 +19,8 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             min-height: 100vh;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
+            flex-direction: column;
+            padding: 0;
             position: relative;
             overflow-x: hidden;
         }
@@ -204,6 +203,18 @@
 <body>
     <canvas id="particles"></canvas>
 
+    <nav style="position:relative;z-index:10;display:flex;align-items:center;gap:2rem;padding:1.8rem 2.5rem;">
+        <a href="/" style="color:#fff;opacity:0.75;text-decoration:none;display:flex;align-items:center;">
+            <svg style="width:18px;height:18px;fill:currentColor" viewBox="0 0 576 512"><path d="M527.9 32H48.1C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48.1 48h479.8c26.6 0 48.1-21.5 48.1-48V80c0-26.5-21.5-48-48.1-48zM54.1 80h467.8c3.3 0 6 2.7 6 6v42H48.1V86c0-3.3 2.7-6 6-6zm467.8 352H54.1c-3.3 0-6-2.7-6-6V256h479.8v170c0 3.3-2.7 6-6 6zM192 332v40c0 6.6-5.4 12-12 12h-72c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12zm192 0v40c0 6.6-5.4 12-12 12H236c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12z"/></svg>
+        </a>
+        <a href="projects.html" style="color:#fff;opacity:0.75;text-decoration:none;font-size:15px;font-family:Inter,sans-serif;">projects</a>
+        <a href="https://menkibedergi.org" target="_blank" rel="noopener" style="color:#fff;opacity:0.75;text-decoration:none;font-size:15px;font-family:Inter,sans-serif;">menkibe dergi</a>
+        <div style="margin-left:auto"></div>
+        <button style="background:#1a1a1a;border:none;color:#fff;width:36px;height:36px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+            <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 512 512"><path d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"/></svg>
+        </button>
+    </nav>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:0 2rem 4rem;">
     <div class="container">
         <!-- Profil resmi -->
         <img src="profil.png" alt="bager" class="avatar" id="avatar" onerror="this.style.display='none'">
@@ -261,6 +272,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <script>
