@@ -22,12 +22,27 @@
             align-items: center;
             justify-content: center;
             padding: 2rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Partikül arka plan */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
         }
 
         .container {
             max-width: 600px;
             width: 100%;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         h1 {
@@ -153,6 +168,8 @@
     </style>
 </head>
 <body>
+    <canvas id="particles"></canvas>
+
     <div class="container">
         <h1>ba û bager</h1>
         <p class="subtitle">GNU/Linux Enthusiast.</p>
@@ -198,6 +215,57 @@
     </div>
 
     <script>
+        // Partikül efekti
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let particleCount = 80;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function createParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 2 + 1,
+                    speedX: (Math.random() - 0.5) * 0.3,
+                    speedY: (Math.random() - 0.5) * 0.3,
+                    opacity: Math.random() * 0.5 + 0.2
+                });
+            }
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let p of particles) {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+                ctx.fill();
+                p.x += p.speedX;
+                p.y += p.speedY;
+                if (p.x < 0) p.x = canvas.width;
+                if (p.x > canvas.width) p.x = 0;
+                if (p.y < 0) p.y = canvas.height;
+                if (p.y > canvas.height) p.y = 0;
+            }
+            requestAnimationFrame(drawParticles);
+        }
+
+        resizeCanvas();
+        createParticles();
+        drawParticles();
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            createParticles();
+        });
+
+        // Saat
         function updateClock() {
             const now = new Date();
             const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -215,6 +283,7 @@
         updateClock();
         setInterval(updateClock, 1000);
 
+        // Last.fm
         const LASTFM_API_KEY = '24b984e9a14eb6140c10178159d1971f';
         const LASTFM_USERNAME = 'mulksuz21';
 
