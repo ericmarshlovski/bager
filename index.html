@@ -43,19 +43,22 @@
             z-index: 1;
         }
 
-        /* Profil resmi */
+        /* Profil resmi - kedi için beyaz çerçeve ve gölge */
         .avatar {
             width: 96px;
             height: 96px;
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 1.5rem;
-            border: 2px solid #1f2937;
-            transition: border-color 0.2s;
+            border: 3px solid #ffffff;
+            box-shadow: 0 0 10px rgba(255,255,255,0.5);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background-color: #1a1a1a;
         }
 
         .avatar:hover {
             border-color: #a5b4fc;
+            box-shadow: 0 0 15px rgba(165,180,252,0.6);
         }
 
         h1 {
@@ -199,13 +202,13 @@
             50% { opacity: 0.4; }
         }
     </style>
-<link rel="icon" type="image/png" href="mountains.png">
+    <link rel="icon" type="image/png" href="cat.png">
 </head>
 <body>
     <canvas id="particles"></canvas>
 
     <nav style="position:relative;z-index:10;display:flex;align-items:center;gap:2rem;padding:1.8rem 2.5rem;">
-        <a href="/" style="color:#fff;opacity:0.75;text-decoration:none;display:flex;align-items:center;">
+        <a href="#" style="color:#fff;opacity:0.75;text-decoration:none;display:flex;align-items:center;">
             <svg style="width:18px;height:18px;fill:currentColor" viewBox="0 0 576 512"><path d="M527.9 32H48.1C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48.1 48h479.8c26.6 0 48.1-21.5 48.1-48V80c0-26.5-21.5-48-48.1-48zM54.1 80h467.8c3.3 0 6 2.7 6 6v42H48.1V86c0-3.3 2.7-6 6-6zm467.8 352H54.1c-3.3 0-6-2.7-6-6V256h479.8v170c0 3.3-2.7 6-6 6zM192 332v40c0 6.6-5.4 12-12 12h-72c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12zm192 0v40c0 6.6-5.4 12-12 12H236c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12z"/></svg>
         </a>
         <a href="projects.html" style="color:#fff;opacity:0.75;text-decoration:none;font-size:15px;font-family:Inter,sans-serif;">projects</a>
@@ -217,7 +220,7 @@
     </nav>
     <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:0 2rem 4rem;">
     <div class="container">
-        <!-- Profil resmi -->
+        <!-- Profil resmi - Kedi -->
         <img src="cat.png" alt="bager" class="avatar" id="avatar" onerror="this.style.display='none'">
 
         <h1>ba û bager</h1>
