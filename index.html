@@ -44,6 +44,21 @@
             z-index: 1;
         }
 
+        /* Profil resmi */
+        .avatar {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            border: 2px solid #1f2937;
+            transition: border-color 0.2s;
+        }
+
+        .avatar:hover {
+            border-color: #a5b4fc;
+        }
+
         h1 {
             font-size: 4rem;
             font-weight: 700;
@@ -143,12 +158,6 @@
             color: #1db954;
         }
 
-        .spotify-icon {
-            width: 24px;
-            height: 24px;
-            color: #1db954;
-        }
-
         .spotify-info {
             text-align: left;
             min-width: 180px;
@@ -196,6 +205,9 @@
     <canvas id="particles"></canvas>
 
     <div class="container">
+        <!-- Profil resmi -->
+        <img src="profil.png" alt="bager" class="avatar" id="avatar" onerror="this.style.display='none'">
+
         <h1>ba û bager</h1>
         <p class="subtitle">GNU/Linux Enthusiast.</p>
 
