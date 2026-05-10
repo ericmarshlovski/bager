@@ -104,7 +104,6 @@
         }
         .clock svg { width: 14px; height: 14px; fill: currentColor; }
 
-        /* Spotify kartı */
         .spotify-card {
             background: #0d0d0d;
             border: 0.5px solid #1f1f1f;
@@ -182,7 +181,6 @@
             50% { opacity: 0.4; }
         }
 
-        /* Tema butonu */
         .theme-btn {
             background: #1a1a1a;
             border: none;
@@ -205,9 +203,7 @@
 <body>
     <canvas id="particles"></canvas>
 
-    <!-- NAV: kart ikonu eklendi (sol) -->
     <nav style="position:relative;z-index:10;display:flex;align-items:center;gap:2rem;padding:1.8rem 2.5rem;">
-        <!-- KART İKONU (geri getirildi) -->
         <a href="#" style="color:inherit;opacity:0.75;text-decoration:none;display:flex;align-items:center;">
             <svg style="width:18px;height:18px;fill:currentColor" viewBox="0 0 576 512"><path d="M527.9 32H48.1C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48.1 48h479.8c26.6 0 48.1-21.5 48.1-48V80c0-26.5-21.5-48-48.1-48zM54.1 80h467.8c3.3 0 6 2.7 6 6v42H48.1V86c0-3.3 2.7-6 6-6zm467.8 352H54.1c-3.3 0-6-2.7-6-6V256h479.8v170c0 3.3-2.7 6-6 6zM192 332v40c0 6.6-5.4 12-12 12h-72c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12zm192 0v40c0 6.6-5.4 12-12 12H236c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12z"/></svg>
         </a>
@@ -266,7 +262,6 @@
     </div>
 
     <script>
-        // Tema
         const themeBtn = document.getElementById('theme-toggle');
         const moonIcon = document.getElementById('theme-icon-moon');
         const sunIcon = document.getElementById('theme-icon-sun');
@@ -285,7 +280,6 @@
         const saved = localStorage.getItem('theme');
         if (saved === 'light') setTheme(true);
 
-        // Partiküller
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -328,7 +322,6 @@
         resizeCanvas(); createParticles(); drawParticles();
         window.addEventListener('resize', () => { resizeCanvas(); createParticles(); });
 
-        // Saat
         function updateClock() {
             const now = new Date();
             const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
@@ -346,7 +339,6 @@
         updateClock();
         setInterval(updateClock, 1000);
 
-        // Spotify / Last.fm
         const LASTFM_API_KEY = '24b984e9a14eb6140c10178159d1971f';
         const LASTFM_USERNAME = 'mulksuz21';
 
