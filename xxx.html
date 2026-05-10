@@ -2,9 +2,9 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>xxx | ba û bager</title>
-    <meta name="description" content="Projects by ba û bager.">
+    <meta name="description" content="xxx by ba û bager.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,8 +37,12 @@
             z-index: 10;
             display: flex;
             align-items: center;
-            gap: 2rem;
-            padding: 1.8rem 2.5rem;
+            gap: 1rem;
+            padding: 1rem 1.2rem;
+            flex-wrap: wrap;
+        }
+        @media (min-width: 768px) {
+            nav { gap: 2rem; padding: 1.8rem 2.5rem; }
         }
         .icon-btn {
             background: #1a1a1a;
@@ -118,10 +122,13 @@
             max-width: 780px;
             width: 100%;
             margin: 0 auto;
-            padding: 4rem 2.5rem;
+            padding: 2rem 1.2rem;
+        }
+        @media (min-width: 768px) {
+            .content { padding: 4rem 2.5rem; }
         }
         .count {
-            font-size: 5rem;
+            font-size: 3rem;
             font-weight: 700;
             letter-spacing: -0.025em;
             line-height: 1;
@@ -129,10 +136,13 @@
             opacity: 0;
             animation: fadeUp 0.5s ease 0.1s forwards;
         }
+        @media (min-width: 768px) {
+            .count { font-size: 5rem; }
+        }
         .count-label {
             font-size: 1rem;
             color: #6b7280;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             opacity: 0;
             animation: fadeUp 0.5s ease 0.2s forwards;
         }
@@ -147,10 +157,10 @@
             background: #111;
             border: 1px solid #222;
             border-radius: 12px;
-            padding: 1.25rem 1.5rem;
+            padding: 1rem 1.2rem;
             display: flex;
             align-items: center;
-            gap: 1.25rem;
+            gap: 1rem;
             text-decoration: none;
             color: #fff;
             transition: border-color 0.2s, transform 0.2s;
@@ -168,15 +178,15 @@
             border-color: #aaa;
         }
         .project-icon {
-            width: 48px;
-            height: 48px;
+            width: 44px;
+            height: 44px;
             background: #1a1a1a;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            font-size: 22px;
+            font-size: 20px;
         }
         body.light .project-icon {
             background: #d5d5d5;
@@ -216,7 +226,7 @@
         <a href="index.html" class="icon-btn" aria-label="geri dön">
             <svg viewBox="0 0 24 24"><path d="M19 12H5M5 12l7 7M5 12l7-7"/></svg>
         </a>
-        <a href="projects.html" class="nav-link">xxx</a>
+        <a href="xxx.html" class="nav-link">xxx</a>
         <div style="margin-left:auto"></div>
         <button class="theme-btn" id="theme-toggle" aria-label="tema değiştir">
             <svg id="theme-icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
@@ -260,52 +270,135 @@
 
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
-        let particles = [];
+        let width, height;
+        let points = [];
+        let mouseX = null, mouseY = null;
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
+        const isMobile = window.innerWidth <= 768;
+        const POINT_COUNT = isMobile ? 40 : 70;
+        const LINE_DISTANCE = isMobile ? 100 : 130;
 
-        function createParticles() {
-            particles = [];
-            for (let i = 0; i < 80; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    radius: Math.random() * 2 + 1,
-                    speedX: (Math.random() - 0.5) * 0.3,
-                    speedY: (Math.random() - 0.5) * 0.3,
-                    opacity: Math.random() * 0.5 + 0.2
+        function initPoints() {
+            points = [];
+            for (let i = 0; i < POINT_COUNT; i++) {
+                points.push({
+                    x: Math.random(),
+                    y: Math.random(),
+                    vx: (Math.random() - 0.5) * 0.002,
+                    vy: (Math.random() - 0.5) * 0.002,
+                    radius: Math.random() * 2 + 1.5,
+                    colorHue: 260 + Math.random() * 40
                 });
             }
         }
 
-        function drawParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            const isLight = document.body.classList.contains('light');
-            for (let p of particles) {
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = isLight ? `rgba(0,0,0,${p.opacity * 0.4})` : `rgba(255,255,255,${p.opacity})`;
-                ctx.fill();
-                p.x += p.speedX;
-                p.y += p.speedY;
-                if (p.x < 0) p.x = canvas.width;
-                if (p.x > canvas.width) p.x = 0;
-                if (p.y < 0) p.y = canvas.height;
-                if (p.y > canvas.height) p.y = 0;
-            }
-            requestAnimationFrame(drawParticles);
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
         }
 
-        resizeCanvas();
-        createParticles();
-        drawParticles();
+        function draw() {
+            if (!width || !height) return;
+            ctx.clearRect(0, 0, width, height);
+            
+            const isLight = document.body.classList.contains('light');
+            const darkMode = !isLight;
+            
+            if (darkMode) {
+                ctx.fillStyle = '#000000';
+                ctx.fillRect(0, 0, width, height);
+            } else {
+                ctx.fillStyle = '#f0f0f0';
+                ctx.fillRect(0, 0, width, height);
+            }
+            
+            for (let p of points) {
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0) p.x = 1;
+                if (p.x > 1) p.x = 0;
+                if (p.y < 0) p.y = 1;
+                if (p.y > 1) p.y = 0;
+                
+                const screenX = p.x * width;
+                const screenY = p.y * height;
+                
+                ctx.beginPath();
+                ctx.arc(screenX, screenY, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = darkMode ? `hsla(${p.colorHue}, 70%, 65%, 0.7)` : `hsla(${p.colorHue}, 60%, 40%, 0.3)`;
+                ctx.fill();
+                
+                ctx.beginPath();
+                ctx.arc(screenX, screenY, p.radius * 0.5, 0, Math.PI * 2);
+                ctx.fillStyle = darkMode ? `hsla(${p.colorHue}, 80%, 75%, 0.9)` : `hsla(${p.colorHue}, 70%, 50%, 0.6)`;
+                ctx.fill();
+            }
+            
+            for (let i = 0; i < points.length; i++) {
+                for (let j = i + 1; j < points.length; j++) {
+                    const p1 = points[i];
+                    const p2 = points[j];
+                    const dx = (p1.x - p2.x) * width;
+                    const dy = (p1.y - p2.y) * height;
+                    const dist = Math.hypot(dx, dy);
+                    if (dist < LINE_DISTANCE) {
+                        const alpha = (1 - dist / LINE_DISTANCE) * 0.3;
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x * width, p1.y * height);
+                        ctx.lineTo(p2.x * width, p2.y * height);
+                        ctx.strokeStyle = darkMode ? `hsla(280, 70%, 60%, ${alpha})` : `hsla(280, 60%, 40%, ${alpha * 0.6})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+            }
+            
+            if (mouseX !== null && mouseY !== null) {
+                for (let p of points) {
+                    const screenX = p.x * width;
+                    const screenY = p.y * height;
+                    const distToMouse = Math.hypot(screenX - mouseX, screenY - mouseY);
+                    if (distToMouse < 100) {
+                        const glow = (1 - distToMouse / 100) * 5;
+                        ctx.beginPath();
+                        ctx.arc(screenX, screenY, p.radius + glow, 0, Math.PI * 2);
+                        ctx.fillStyle = darkMode ? `hsla(${p.colorHue}, 80%, 70%, 0.4)` : `hsla(${p.colorHue}, 70%, 50%, 0.3)`;
+                        ctx.fill();
+                    }
+                }
+            }
+            
+            requestAnimationFrame(draw);
+        }
+
+        function handleMove(clientX, clientY) {
+            mouseX = clientX;
+            mouseY = clientY;
+        }
+
+        function handleLeave() {
+            mouseX = null;
+            mouseY = null;
+        }
+
+        resize();
+        initPoints();
+        draw();
         window.addEventListener('resize', () => {
-            resizeCanvas();
-            createParticles();
+            resize();
+            initPoints();
         });
+        
+        window.addEventListener('mousemove', (e) => handleMove(e.clientX, e.clientY));
+        window.addEventListener('mouseleave', handleLeave);
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length) handleMove(e.touches[0].clientX, e.touches[0].clientY);
+        });
+        window.addEventListener('touchstart', (e) => {
+            if (e.touches.length) handleMove(e.touches[0].clientX, e.touches[0].clientY);
+        });
+        window.addEventListener('touchend', handleLeave);
+        window.addEventListener('touchcancel', handleLeave);
     </script>
 </body>
 </html>
