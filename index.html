@@ -282,45 +282,127 @@
 
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
-        let particles = [];
+        let width, height;
+        let points = [];
+        let mouseX = null, mouseY = null;
 
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-
-        function createParticles() {
-            particles = [];
-            for (let i = 0; i < 80; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    radius: Math.random() * 2 + 1,
-                    speedX: (Math.random() - 0.5) * 0.3,
-                    speedY: (Math.random() - 0.5) * 0.3,
-                    opacity: Math.random() * 0.5 + 0.2
+        function initPoints() {
+            points = [];
+            for (let i = 0; i < 70; i++) {
+                points.push({
+                    x: Math.random(),
+                    y: Math.random(),
+                    vx: (Math.random() - 0.5) * 0.002,
+                    vy: (Math.random() - 0.5) * 0.002,
+                    radius: Math.random() * 2 + 1.5,
+                    colorHue: 260 + Math.random() * 40
                 });
             }
         }
 
-        function drawParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            const isLight = document.body.classList.contains('light');
-            for (let p of particles) {
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = isLight
-                    ? `rgba(0,0,0,${p.opacity * 0.4})`
-                    : `rgba(255,255,255,${p.opacity})`;
-                ctx.fill();
-                p.x += p.speedX; p.y += p.speedY;
-                if (p.x < 0) p.x = canvas.width;
-                if (p.x > canvas.width) p.x = 0;
-                if (p.y < 0) p.y = canvas.height;
-                if (p.y > canvas.height) p.y = 0;
-            }
-            requestAnimationFrame(drawParticles);
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
         }
 
-        resizeCanvas(); createParticles(); drawParticles();
-        window.addEventListener('resize', () => { resizeCanvas(); createParticles(); });
+        function draw() {
+            if (!width || !height) return;
+            ctx.clearRect(0, 0, width, height);
+            
+            const isLight = document.body.classList.contains('light');
+            const darkMode = !isLight;
+            
+            if (darkMode) {
+                ctx.fillStyle = '#000000';
+                ctx.fillRect(0, 0, width, height);
+            } else {
+                ctx.fillStyle = '#f0f0f0';
+                ctx.fillRect(0, 0, width, height);
+            }
+            
+            for (let p of points) {
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0) p.x = 1;
+                if (p.x > 1) p.x = 0;
+                if (p.y < 0) p.y = 1;
+                if (p.y > 1) p.y = 0;
+                
+                const screenX = p.x * width;
+                const screenY = p.y * height;
+                
+                ctx.beginPath();
+                ctx.arc(screenX, screenY, p.radius, 0, Math.PI * 2);
+                if (darkMode) {
+                    ctx.fillStyle = `hsla(${p.colorHue}, 70%, 65%, 0.7)`;
+                } else {
+                    ctx.fillStyle = `hsla(${p.colorHue}, 60%, 40%, 0.3)`;
+                }
+                ctx.fill();
+                
+                ctx.beginPath();
+                ctx.arc(screenX, screenY, p.radius * 0.5, 0, Math.PI * 2);
+                ctx.fillStyle = darkMode ? `hsla(${p.colorHue}, 80%, 75%, 0.9)` : `hsla(${p.colorHue}, 70%, 50%, 0.6)`;
+                ctx.fill();
+            }
+            
+            for (let i = 0; i < points.length; i++) {
+                for (let j = i + 1; j < points.length; j++) {
+                    const p1 = points[i];
+                    const p2 = points[j];
+                    const dx = (p1.x - p2.x) * width;
+                    const dy = (p1.y - p2.y) * height;
+                    const dist = Math.hypot(dx, dy);
+                    if (dist < 130) {
+                        const alpha = (1 - dist / 130) * 0.3;
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x * width, p1.y * height);
+                        ctx.lineTo(p2.x * width, p2.y * height);
+                        if (darkMode) {
+                            ctx.strokeStyle = `hsla(280, 70%, 60%, ${alpha})`;
+                        } else {
+                            ctx.strokeStyle = `hsla(280, 60%, 40%, ${alpha * 0.6})`;
+                        }
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+            }
+            
+            if (mouseX !== null && mouseY !== null) {
+                for (let p of points) {
+                    const screenX = p.x * width;
+                    const screenY = p.y * height;
+                    const distToMouse = Math.hypot(screenX - mouseX, screenY - mouseY);
+                    if (distToMouse < 100) {
+                        const glow = (1 - distToMouse / 100) * 5;
+                        ctx.beginPath();
+                        ctx.arc(screenX, screenY, p.radius + glow, 0, Math.PI * 2);
+                        ctx.fillStyle = darkMode ? `hsla(${p.colorHue}, 80%, 70%, 0.4)` : `hsla(${p.colorHue}, 70%, 50%, 0.3)`;
+                        ctx.fill();
+                    }
+                }
+            }
+            
+            requestAnimationFrame(draw);
+        }
+
+        resize();
+        initPoints();
+        draw();
+        window.addEventListener('resize', () => {
+            resize();
+            initPoints();
+        });
+        
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        window.addEventListener('mouseleave', () => {
+            mouseX = null;
+            mouseY = null;
+        });
 
         function updateClock() {
             const now = new Date();
