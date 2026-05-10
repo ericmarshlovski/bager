@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>projects | ba û bager</title>
+    <title>xxx | ba û bager</title>
     <meta name="description" content="Projects by ba û bager.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
             background-color: #000;
             color: #fff;
@@ -18,17 +17,21 @@
             flex-direction: column;
             position: relative;
             overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
         }
-
+        body.light {
+            background-color: #f5f5f5;
+            color: #111;
+        }
         #particles {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 0;
             pointer-events: none;
         }
-
-        /* NAV */
         nav {
             position: relative;
             z-index: 10;
@@ -37,45 +40,86 @@
             gap: 2rem;
             padding: 1.8rem 2.5rem;
         }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 15px;
-            opacity: 0.75;
-            transition: opacity 0.2s, color 0.2s;
-            display: flex;
-            align-items: center;
-        }
-        nav a:hover { opacity: 1; color: #a5b4fc; }
-        nav svg { width: 18px; height: 18px; fill: currentColor; }
-        nav .ml-auto { margin-left: auto; }
-
-        .settings-btn {
+        .icon-btn {
             background: #1a1a1a;
             border: none;
             color: #fff;
-            width: 36px; height: 36px;
+            width: 36px;
+            height: 36px;
             border-radius: 8px;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
+            text-decoration: none;
             transition: background 0.2s;
         }
-        .settings-btn:hover { background: #2a2a2a; }
-        .settings-btn svg { width: 16px; height: 16px; }
-
-        /* CONTENT */
+        body.light .icon-btn {
+            background: #e0e0e0;
+            color: #111;
+        }
+        .icon-btn:hover {
+            background: #2a2a2a;
+        }
+        body.light .icon-btn:hover {
+            background: #ccc;
+        }
+        .icon-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .nav-link {
+            color: inherit;
+            text-decoration: none;
+            font-size: 15px;
+            opacity: 0.75;
+            transition: opacity 0.2s;
+        }
+        .nav-link:hover {
+            opacity: 1;
+            color: #a5b4fc;
+        }
+        .theme-btn {
+            background: #1a1a1a;
+            border: none;
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        body.light .theme-btn {
+            background: #e0e0e0;
+            color: #111;
+        }
+        .theme-btn:hover {
+            background: #2a2a2a;
+        }
+        body.light .theme-btn:hover {
+            background: #ccc;
+        }
+        .theme-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
         .content {
             position: relative;
             z-index: 1;
             max-width: 780px;
             width: 100%;
             margin: 0 auto;
-            padding: 4rem 2.5rem 4rem;
+            padding: 4rem 2.5rem;
         }
-
         .count {
             font-size: 5rem;
             font-weight: 700;
@@ -85,7 +129,6 @@
             opacity: 0;
             animation: fadeUp 0.5s ease 0.1s forwards;
         }
-
         .count-label {
             font-size: 1rem;
             color: #6b7280;
@@ -93,8 +136,6 @@
             opacity: 0;
             animation: fadeUp 0.5s ease 0.2s forwards;
         }
-
-        /* PROJECT CARD */
         .projects-grid {
             display: flex;
             flex-direction: column;
@@ -102,7 +143,6 @@
             opacity: 0;
             animation: fadeUp 0.5s ease 0.35s forwards;
         }
-
         .project-card {
             background: #111;
             border: 1px solid #222;
@@ -115,13 +155,21 @@
             color: #fff;
             transition: border-color 0.2s, transform 0.2s;
         }
+        body.light .project-card {
+            background: #ebebeb;
+            border-color: #d0d0d0;
+            color: #111;
+        }
         .project-card:hover {
             border-color: #444;
             transform: translateY(-2px);
         }
-
+        body.light .project-card:hover {
+            border-color: #aaa;
+        }
         .project-icon {
-            width: 48px; height: 48px;
+            width: 48px;
+            height: 48px;
             background: #1a1a1a;
             border-radius: 10px;
             display: flex;
@@ -130,9 +178,13 @@
             flex-shrink: 0;
             font-size: 22px;
         }
-
-        .project-info { flex: 1; min-width: 0; }
-
+        body.light .project-icon {
+            background: #d5d5d5;
+        }
+        .project-info {
+            flex: 1;
+            min-width: 0;
+        }
         .project-name {
             font-size: 15px;
             font-weight: 600;
@@ -141,18 +193,16 @@
             gap: 0.5rem;
             margin-bottom: 3px;
         }
-
         .project-name svg {
-            width: 13px; height: 13px;
+            width: 13px;
+            height: 13px;
             fill: #6b7280;
             flex-shrink: 0;
         }
-
         .project-desc {
             font-size: 13px;
             color: #6b7280;
         }
-
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(16px); }
             to { opacity: 1; transform: translateY(0); }
@@ -163,21 +213,20 @@
     <canvas id="particles"></canvas>
 
     <nav>
-        <a href="#" aria-label="home">
-            <svg viewBox="0 0 576 512"><path d="M527.9 32H48.1C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48.1 48h479.8c26.6 0 48.1-21.5 48.1-48V80c0-26.5-21.5-48-48.1-48zM54.1 80h467.8c3.3 0 6 2.7 6 6v42H48.1V86c0-3.3 2.7-6 6-6zm467.8 352H54.1c-3.3 0-6-2.7-6-6V256h479.8v170c0 3.3-2.7 6-6 6zM192 332v40c0 6.6-5.4 12-12 12h-72c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12zm192 0v40c0 6.6-5.4 12-12 12H236c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12z"/></svg>
+        <a href="index.html" class="icon-btn" aria-label="geri dön">
+            <svg viewBox="0 0 24 24"><path d="M19 12H5M5 12l7 7M5 12l7-7"/></svg>
         </a>
-        <a href="projects.html">projects</a>
-        
-        <div class="ml-auto"></div>
-        <button class="settings-btn" aria-label="settings">
-            <svg viewBox="0 0 512 512"><path d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"/></svg>
+        <a href="projects.html" class="nav-link">xxx</a>
+        <div style="margin-left:auto"></div>
+        <button class="theme-btn" id="theme-toggle" aria-label="tema değiştir">
+            <svg id="theme-icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+            <svg id="theme-icon-sun" viewBox="0 0 24 24" style="display:none"><path d="M12 4.5a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 12 4.5zm0 12a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 12 16.5zm7.5-4.5a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5a.75.75 0 0 1 .75.75zM6.75 12a.75.75 0 0 1-.75.75H4.5a.75.75 0 0 1 0-1.5H6a.75.75 0 0 1 .75.75zm9.72-5.03a.75.75 0 0 1 0 1.06l-1.06 1.06a.75.75 0 1 1-1.06-1.06l1.06-1.06a.75.75 0 0 1 1.06 0zM8.56 15.44a.75.75 0 0 1 0 1.06l-1.06 1.06a.75.75 0 1 1-1.06-1.06l1.06-1.06a.75.75 0 0 1 1.06 0zm7.94 1.06a.75.75 0 1 1-1.06-1.06l1.06-1.06a.75.75 0 1 1 1.06 1.06l-1.06 1.06zM8.56 8.56A.75.75 0 1 1 7.5 7.5l1.06 1.06a.75.75 0 0 1-1.06 1.06L7.5 7.5zM12 8.25a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5z"/></svg>
         </button>
     </nav>
 
     <div class="content">
         <h1 class="count">1</h1>
         <p class="count-label">1 proje</p>
-
         <div class="projects-grid">
             <a href="https://menkibedergi.org" target="_blank" rel="noopener" class="project-card">
                 <div class="project-icon">📰</div>
@@ -193,11 +242,30 @@
     </div>
 
     <script>
+        const themeBtn = document.getElementById('theme-toggle');
+        const moonIcon = document.getElementById('theme-icon-moon');
+        const sunIcon = document.getElementById('theme-icon-sun');
+
+        function setTheme(light) {
+            document.body.classList.toggle('light', light);
+            moonIcon.style.display = light ? 'none' : 'block';
+            sunIcon.style.display = light ? 'block' : 'none';
+            localStorage.setItem('theme', light ? 'light' : 'dark');
+        }
+
+        themeBtn.addEventListener('click', () => setTheme(!document.body.classList.contains('light')));
+
+        const saved = localStorage.getItem('theme');
+        if (saved === 'light') setTheme(true);
+
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
         let particles = [];
 
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
 
         function createParticles() {
             particles = [];
@@ -215,12 +283,14 @@
 
         function drawParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const isLight = document.body.classList.contains('light');
             for (let p of particles) {
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255,255,255,${p.opacity})`;
+                ctx.fillStyle = isLight ? `rgba(0,0,0,${p.opacity * 0.4})` : `rgba(255,255,255,${p.opacity})`;
                 ctx.fill();
-                p.x += p.speedX; p.y += p.speedY;
+                p.x += p.speedX;
+                p.y += p.speedY;
                 if (p.x < 0) p.x = canvas.width;
                 if (p.x > canvas.width) p.x = 0;
                 if (p.y < 0) p.y = canvas.height;
@@ -229,8 +299,13 @@
             requestAnimationFrame(drawParticles);
         }
 
-        resizeCanvas(); createParticles(); drawParticles();
-        window.addEventListener('resize', () => { resizeCanvas(); createParticles(); });
+        resizeCanvas();
+        createParticles();
+        drawParticles();
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            createParticles();
+        });
     </script>
 </body>
 </html>
