@@ -4,252 +4,409 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>xxx | ba û bager</title>
-    <meta name="description" content="xxx by ba û bager.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="ba û bager xxx bağlantıları">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: #000000;
+            --bg-2: #020301;
+            --fg: #e2e4d4;
+            --muted: #6f755e;
+            --soft: rgba(226, 228, 212, 0.6);
+            --line: rgba(117, 128, 78, 0.2);
+            --line-strong: rgba(151, 161, 97, 0.42);
+            --panel: rgba(3, 4, 2, 0.9);
+            --panel-strong: rgba(4, 6, 3, 0.98);
+            --olive: #a2aa6a;
+            --shadow: rgba(91, 103, 55, 0.14);
+            color-scheme: dark;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { min-height: 100%; }
+
         body {
-            background-color: #000;
-            color: #fff;
-            font-family: 'Inter', -apple-system, sans-serif;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            color: var(--fg);
+            font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            background:
+                linear-gradient(135deg, rgba(0,0,0,0) 0 49.45%, rgba(115,128,71,0.22) 49.5% 50.5%, rgba(0,0,0,0) 50.55%),
+                linear-gradient(135deg, rgba(0,0,0,0.92) 0 50%, rgba(23,34,16,0.52) 50.08% 100%),
+                radial-gradient(circle at 52% 38%, rgba(90, 99, 57, 0.13), transparent 32rem),
+                linear-gradient(145deg, var(--bg), var(--bg-2) 58%, #000000);
             position: relative;
             overflow-x: hidden;
-            transition: background-color 0.3s, color 0.3s;
+            transition: background 0.35s ease, color 0.35s ease;
         }
+
         body.light {
-            background-color: #f5f5f5;
-            color: #111;
+            --bg: #ecefe4;
+            --bg-2: #dfe5d7;
+            --fg: #172016;
+            --muted: #58624d;
+            --soft: rgba(23, 32, 22, 0.74);
+            --line: rgba(69, 91, 45, 0.2);
+            --line-strong: rgba(68, 93, 39, 0.42);
+            --panel: rgba(230, 235, 221, 0.78);
+            --panel-strong: rgba(238, 241, 232, 0.94);
+            --olive: #3d611f;
+            --shadow: rgba(54, 72, 37, 0.2);
+            color-scheme: light;
+            background:
+                linear-gradient(135deg, rgba(255,255,255,0) 0 49.25%, rgba(61,97,31,0.24) 49.35% 50.65%, rgba(255,255,255,0) 50.75%),
+                linear-gradient(135deg, rgba(245,247,239,0.7) 0 50%, rgba(198,211,185,0.52) 50.08% 100%),
+                radial-gradient(circle at 50% 38%, rgba(61, 97, 31, 0.13), transparent 29rem),
+                linear-gradient(145deg, var(--bg), var(--bg-2) 54%, #f7f8f1);
         }
+
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::before {
+            background-image:
+                linear-gradient(var(--line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--line) 1px, transparent 1px);
+            background-size: 64px 64px;
+            mask-image: radial-gradient(circle at center, black 0 48%, transparent 78%);
+            opacity: 0.13;
+        }
+
+        body::after {
+            background:
+                radial-gradient(circle at center, transparent 0 46%, rgba(0,0,0,0.62) 100%),
+                linear-gradient(180deg, rgba(255,255,255,0.01), transparent 8%, transparent 91%, rgba(0,0,0,0.72)),
+                repeating-linear-gradient(0deg, rgba(151,161,97,0.014) 0 1px, transparent 1px 6px);
+            mix-blend-mode: overlay;
+            opacity: 0.32;
+        }
+
+        body.light::before { opacity: 0.22; }
+        body.light::after {
+            mix-blend-mode: multiply;
+            opacity: 0.18;
+        }
+
         #particles {
             position: fixed;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100%;
             height: 100%;
             z-index: 0;
             pointer-events: none;
         }
-        nav {
+
+        .site-nav {
             position: relative;
             z-index: 10;
             display: flex;
             align-items: center;
             gap: 1rem;
-            padding: 1rem 1.2rem;
-            flex-wrap: wrap;
+            padding: clamp(1rem, 3vw, 1.8rem) clamp(1rem, 4vw, 2.5rem);
         }
-        @media (min-width: 768px) {
-            nav { gap: 2rem; padding: 1.8rem 2.5rem; }
-        }
-        .icon-btn {
-            background: #1a1a1a;
-            border: none;
-            color: #fff;
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: background 0.2s;
-        }
-        body.light .icon-btn {
-            background: #e0e0e0;
-            color: #111;
-        }
-        .icon-btn:hover {
-            background: #2a2a2a;
-        }
-        body.light .icon-btn:hover {
-            background: #ccc;
-        }
-        .icon-btn svg {
-            width: 16px;
-            height: 16px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-        .nav-link {
-            color: inherit;
-            text-decoration: none;
-            font-size: 15px;
-            opacity: 0.75;
-            transition: opacity 0.2s;
-        }
-        .nav-link:hover {
-            opacity: 1;
-            color: #a5b4fc;
-        }
+
+        .nav-link,
         .theme-btn {
-            background: #1a1a1a;
-            border: none;
-            color: #fff;
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
+            color: var(--fg);
+            background: var(--panel);
+            border: 1px solid var(--line);
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.012) inset, 0 14px 36px rgba(0,0,0,0.48);
+            backdrop-filter: blur(10px);
+            min-height: 38px;
+            border-radius: 5px;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.2s;
+            text-decoration: none;
+            transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
         }
-        body.light .theme-btn {
-            background: #e0e0e0;
-            color: #111;
+
+        .nav-link {
+            gap: 0.58rem;
+            padding: 0 0.85rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
         }
-        .theme-btn:hover {
-            background: #2a2a2a;
+
+        .icon-link {
+            width: 38px;
+            padding: 0;
         }
-        body.light .theme-btn:hover {
-            background: #ccc;
+
+        .nav-link:hover,
+        .theme-btn:hover,
+        .nav-link:focus-visible,
+        .theme-btn:focus-visible {
+            color: var(--olive);
+            border-color: var(--line-strong);
+            box-shadow: 0 0 0 1px rgba(151,161,97,0.1) inset, 0 0 22px var(--shadow);
+            transform: translateY(-1px);
+            outline: none;
         }
+
+        .nav-link svg,
         .theme-btn svg {
             width: 16px;
             height: 16px;
             fill: currentColor;
         }
-        .content {
+
+        .theme-btn {
+            width: 38px;
+            cursor: pointer;
+        }
+
+        body.light .nav-link,
+        body.light .theme-btn,
+        body.light .project-card {
+            background: rgba(236, 240, 229, 0.88);
+            border-color: rgba(68, 93, 39, 0.2);
+            box-shadow: 0 12px 26px rgba(45, 58, 38, 0.2), 0 0 0 1px rgba(255,255,255,0.58) inset;
+        }
+
+        .nav-spacer { margin-left: auto; }
+
+        .page {
             position: relative;
             z-index: 1;
-            max-width: 780px;
-            width: 100%;
+            width: min(100%, 820px);
             margin: 0 auto;
-            padding: 2rem 1.2rem;
+            padding: clamp(2.2rem, 8vw, 6rem) clamp(1rem, 5vw, 2rem) 4rem;
         }
-        @media (min-width: 768px) {
-            .content { padding: 4rem 2.5rem; }
-        }
-        .count {
-            font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: -0.025em;
-            line-height: 1;
-            margin-bottom: 0.5rem;
-            opacity: 0;
-            animation: fadeUp 0.5s ease 0.1s forwards;
-        }
-        @media (min-width: 768px) {
-            .count { font-size: 5rem; }
-        }
-        .count-label {
-            font-size: 1rem;
-            color: #6b7280;
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeUp 0.5s ease 0.2s forwards;
-        }
-        .projects-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            opacity: 0;
-            animation: fadeUp 0.5s ease 0.35s forwards;
-        }
-        .project-card {
-            background: #111;
-            border: 1px solid #222;
-            border-radius: 12px;
-            padding: 1rem 1.2rem;
+
+        .hero {
+            position: relative;
+            margin-bottom: 1rem;
+            padding: 0 0 0.95rem;
+            border-bottom: 1px solid var(--line);
             display: flex;
             align-items: center;
+            justify-content: space-between;
             gap: 1rem;
+        }
+
+        body.light .hero {
+            border-color: rgba(68, 93, 39, 0.18);
+        }
+
+        .hero-copy {
+            position: relative;
+            z-index: 1;
+        }
+
+        .eyebrow {
+            color: var(--olive);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 0;
+        }
+
+        .meta {
+            color: var(--muted);
+            font-size: 0.68rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .projects-grid {
+            display: grid;
+            gap: 0.55rem;
+        }
+
+        .project-card {
+            color: var(--fg);
+            background: rgba(4, 6, 3, 0.84);
+            border: 1px solid var(--line);
+            border-radius: 5px;
+            padding: 0.9rem 0.95rem;
+            display: grid;
+            grid-template-columns: 34px minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 0.82rem;
             text-decoration: none;
-            color: #fff;
-            transition: border-color 0.2s, transform 0.2s;
+            box-shadow: 0 12px 34px rgba(0,0,0,0.28), 0 0 0 1px rgba(255,255,255,0.01) inset;
+            transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
         }
-        body.light .project-card {
-            background: #ebebeb;
-            border-color: #d0d0d0;
-            color: #111;
+
+        .project-card:hover,
+        .project-card:focus-visible {
+            border-color: var(--line-strong);
+            background: rgba(7, 10, 5, 0.94);
+            box-shadow: 0 16px 42px rgba(0,0,0,0.38), 0 0 0 1px rgba(151,161,97,0.08) inset;
+            transform: translateY(-1px);
+            outline: none;
         }
-        .project-card:hover {
-            border-color: #444;
-            transform: translateY(-2px);
+
+        body.light .project-card:hover,
+        body.light .project-card:focus-visible {
+            background: rgba(246, 248, 241, 0.94);
+            box-shadow: 0 14px 34px rgba(45,58,38,0.16), 0 0 0 1px rgba(68,93,39,0.08) inset;
         }
-        body.light .project-card:hover {
-            border-color: #aaa;
-        }
+
         .project-icon {
-            width: 44px;
-            height: 44px;
-            background: #1a1a1a;
-            border-radius: 10px;
+            width: 34px;
+            height: 34px;
+            border-radius: 5px;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
-            font-size: 20px;
+            background: rgba(151,161,97,0.06);
+            border: 1px solid rgba(151,161,97,0.13);
+            color: var(--olive);
         }
+
         body.light .project-icon {
-            background: #d5d5d5;
+            background: rgba(61, 97, 31, 0.06);
+            border-color: rgba(68, 93, 39, 0.18);
         }
-        .project-info {
-            flex: 1;
-            min-width: 0;
+
+        .project-icon svg {
+            width: 17px;
+            height: 17px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
+
         .project-name {
-            font-size: 15px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 3px;
+            font-weight: 700;
+            font-size: 0.92rem;
+            margin-bottom: 0.18rem;
         }
-        .project-name svg {
-            width: 13px;
-            height: 13px;
-            fill: #6b7280;
-            flex-shrink: 0;
-        }
+
         .project-desc {
-            font-size: 13px;
-            color: #6b7280;
+            color: var(--muted);
+            font-size: 0.74rem;
         }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(16px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        .project-arrow {
+            color: var(--muted);
+            font-size: 1rem;
+            transition: color 0.18s ease, transform 0.18s ease;
+        }
+
+        .project-card:hover .project-arrow,
+        .project-card:focus-visible .project-arrow {
+            color: var(--olive);
+            transform: translate(1px, -1px);
+        }
+
+        @media (max-width: 520px) {
+            .site-nav {
+                gap: 0.55rem;
+                padding: 0.85rem 0.85rem 0.4rem;
+            }
+
+            .nav-link {
+                min-height: 34px;
+                padding: 0 0.62rem;
+                font-size: 0.68rem;
+                letter-spacing: 0.06em;
+            }
+
+            .icon-link,
+            .theme-btn {
+                width: 36px;
+                min-height: 36px;
+            }
+
+            .page {
+                padding: 3.4rem 1rem 2rem;
+            }
+
+            .hero {
+                padding-bottom: 0.8rem;
+            }
+
+            .project-card {
+                grid-template-columns: 32px minmax(0, 1fr);
+                gap: 0.72rem;
+                padding: 0.82rem;
+            }
+
+            .project-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            .project-icon svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .project-arrow {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
     <canvas id="particles"></canvas>
 
-    <nav>
-        <a href="index.html" class="icon-btn" aria-label="geri dön">
-            <svg viewBox="0 0 24 24"><path d="M19 12H5M5 12l7 7M5 12l7-7"/></svg>
+    <nav class="site-nav">
+        <a href="index.html" class="nav-link icon-link" aria-label="ana sayfaya dön">
+            <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.42-1.41L7.83 13H20z"/></svg>
         </a>
         <a href="xxx.html" class="nav-link">xxx</a>
-        <div style="margin-left:auto"></div>
+        <div class="nav-spacer"></div>
         <button class="theme-btn" id="theme-toggle" aria-label="tema değiştir">
             <svg id="theme-icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
             <svg id="theme-icon-sun" viewBox="0 0 24 24" style="display:none"><path d="M12 4.5a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 12 4.5zm0 12a.75.75 0 0 1 .75.75v1.5a.75.75 0 0 1-1.5 0v-1.5A.75.75 0 0 1 12 16.5zm7.5-4.5a.75.75 0 0 1-.75.75h-1.5a.75.75 0 0 1 0-1.5h1.5a.75.75 0 0 1 .75.75zM6.75 12a.75.75 0 0 1-.75.75H4.5a.75.75 0 0 1 0-1.5H6a.75.75 0 0 1 .75.75zm9.72-5.03a.75.75 0 0 1 0 1.06l-1.06 1.06a.75.75 0 1 1-1.06-1.06l1.06-1.06a.75.75 0 0 1 1.06 0zM8.56 15.44a.75.75 0 0 1 0 1.06l-1.06 1.06a.75.75 0 1 1-1.06-1.06l1.06-1.06a.75.75 0 0 1 1.06 0zm7.94 1.06a.75.75 0 1 1-1.06-1.06l1.06-1.06a.75.75 0 1 1 1.06 1.06l-1.06 1.06zM8.56 8.56A.75.75 0 1 1 7.5 7.5l1.06 1.06a.75.75 0 0 1-1.06 1.06L7.5 7.5zM12 8.25a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5z"/></svg>
         </button>
     </nav>
 
-    <div class="content">
-        <h1 class="count">1</h1>
-        <p class="count-label">1 proje</p>
+    <main class="page">
+        <section class="hero">
+            <div class="hero-copy">
+                <div class="eyebrow">xxx</div>
+            </div>
+            <div class="meta">2 bağlantı</div>
+        </section>
+
         <div class="projects-grid">
             <a href="https://menkibedergi.org" target="_blank" rel="noopener" class="project-card">
-                <div class="project-icon">📰</div>
-                <div class="project-info">
-                    <div class="project-name">
-                        menkibedergi.org
-                        <svg viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                    </div>
-                    <div class="project-desc">Menkibe Dergi</div>
+                <div class="project-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M7 4h8l3 3v13H7z"/>
+                        <path d="M15 4v4h4"/>
+                        <path d="M10 12h6M10 16h4"/>
+                    </svg>
                 </div>
+                <div class="project-info">
+                    <div class="project-name">menkibedergi.org</div>
+                    <div class="project-desc">menkıbe dergi</div>
+                </div>
+                <div class="project-arrow">↗</div>
+            </a>
+            <a href="https://komunaciwanrenas.org" target="_blank" rel="noopener" class="project-card">
+                <div class="project-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 7h16v12H4z"/>
+                        <path d="M8 7V5h8v2"/>
+                        <path d="M8 11h8M8 15h5"/>
+                    </svg>
+                </div>
+                <div class="project-info">
+                    <div class="project-name">komunaciwanrenas.org</div>
+                    <div class="project-desc">komûna ciwan renas</div>
+                </div>
+                <div class="project-arrow">↗</div>
             </a>
         </div>
-    </div>
+    </main>
 
     <script>
         const themeBtn = document.getElementById('theme-toggle');
@@ -270,115 +427,125 @@
 
         const canvas = document.getElementById('particles');
         const ctx = canvas.getContext('2d');
-        let width, height;
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let width, height, dpr;
         let points = [];
-        let mouseX = null, mouseY = null;
-
-        const isMobile = window.innerWidth <= 768;
-        const POINT_COUNT = isMobile ? 40 : 70;
-        const LINE_DISTANCE = isMobile ? 100 : 130;
+        let sweep = 0;
 
         function initPoints() {
+            const count = Math.min(46, Math.max(24, Math.floor(window.innerWidth / 28)));
             points = [];
-            for (let i = 0; i < POINT_COUNT; i++) {
+            for (let i = 0; i < count; i++) {
                 points.push({
                     x: Math.random(),
                     y: Math.random(),
-                    vx: (Math.random() - 0.5) * 0.002,
-                    vy: (Math.random() - 0.5) * 0.002,
-                    radius: Math.random() * 2 + 1.5,
-                    colorHue: 260 + Math.random() * 40
+                    vx: (Math.random() - 0.5) * 0.00045,
+                    vy: (Math.random() - 0.5) * 0.00045,
+                    radius: Math.random() * 1.1 + 0.55,
+                    phase: Math.random() * Math.PI * 2
                 });
             }
         }
 
         function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
+            dpr = Math.min(window.devicePixelRatio || 1, 2);
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = Math.floor(width * dpr);
+            canvas.height = Math.floor(height * dpr);
+            canvas.style.width = `${width}px`;
+            canvas.style.height = `${height}px`;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
         }
 
         function draw() {
             if (!width || !height) return;
-            ctx.clearRect(0, 0, width, height);
-            
             const isLight = document.body.classList.contains('light');
             const darkMode = !isLight;
-            
+
+            ctx.clearRect(0, 0, width, height);
             if (darkMode) {
-                ctx.fillStyle = '#000000';
-                ctx.fillRect(0, 0, width, height);
-            } else {
-                ctx.fillStyle = '#f0f0f0';
+                ctx.fillStyle = 'rgba(1, 2, 1, 0.5)';
                 ctx.fillRect(0, 0, width, height);
             }
-            
+
+            const grid = darkMode ? 'rgba(116, 126, 72, 0.018)' : 'rgba(63, 126, 24, 0.045)';
+            ctx.strokeStyle = grid;
+            ctx.lineWidth = 1;
+            const spacing = 96;
+            for (let x = (sweep * 18) % spacing; x < width; x += spacing) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, height);
+                ctx.stroke();
+            }
+            for (let y = (sweep * 10) % spacing; y < height; y += spacing) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(width, y);
+                ctx.stroke();
+            }
+
             for (let p of points) {
-                p.x += p.vx;
-                p.y += p.vy;
+                if (!prefersReducedMotion) {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                }
                 if (p.x < 0) p.x = 1;
                 if (p.x > 1) p.x = 0;
                 if (p.y < 0) p.y = 1;
                 if (p.y > 1) p.y = 0;
-                
-                const screenX = p.x * width;
-                const screenY = p.y * height;
-                
-                ctx.beginPath();
-                ctx.arc(screenX, screenY, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = darkMode ? `hsla(${p.colorHue}, 70%, 65%, 0.7)` : `hsla(${p.colorHue}, 60%, 40%, 0.3)`;
-                ctx.fill();
-                
-                ctx.beginPath();
-                ctx.arc(screenX, screenY, p.radius * 0.5, 0, Math.PI * 2);
-                ctx.fillStyle = darkMode ? `hsla(${p.colorHue}, 80%, 75%, 0.9)` : `hsla(${p.colorHue}, 70%, 50%, 0.6)`;
-                ctx.fill();
             }
-            
+
             for (let i = 0; i < points.length; i++) {
+                const p1 = points[i];
+                const x1 = p1.x * width;
+                const y1 = p1.y * height;
+
                 for (let j = i + 1; j < points.length; j++) {
-                    const p1 = points[i];
                     const p2 = points[j];
-                    const dx = (p1.x - p2.x) * width;
-                    const dy = (p1.y - p2.y) * height;
-                    const dist = Math.hypot(dx, dy);
-                    if (dist < LINE_DISTANCE) {
-                        const alpha = (1 - dist / LINE_DISTANCE) * 0.3;
+                    const x2 = p2.x * width;
+                    const y2 = p2.y * height;
+                    const dist = Math.hypot(x1 - x2, y1 - y2);
+                    if (dist < 118) {
+                        const alpha = (1 - dist / 118) * (darkMode ? 0.08 : 0.13);
                         ctx.beginPath();
-                        ctx.moveTo(p1.x * width, p1.y * height);
-                        ctx.lineTo(p2.x * width, p2.y * height);
-                        ctx.strokeStyle = darkMode ? `hsla(280, 70%, 60%, ${alpha})` : `hsla(280, 60%, 40%, ${alpha * 0.6})`;
+                        ctx.moveTo(x1, y1);
+                        ctx.lineTo(x2, y2);
+                        ctx.strokeStyle = darkMode ? `rgba(118, 132, 76, ${alpha})` : `rgba(63, 126, 24, ${alpha})`;
                         ctx.lineWidth = 0.8;
                         ctx.stroke();
                     }
                 }
             }
-            
-            if (mouseX !== null && mouseY !== null) {
-                for (let p of points) {
-                    const screenX = p.x * width;
-                    const screenY = p.y * height;
-                    const distToMouse = Math.hypot(screenX - mouseX, screenY - mouseY);
-                    if (distToMouse < 100) {
-                        const glow = (1 - distToMouse / 100) * 5;
-                        ctx.beginPath();
-                        ctx.arc(screenX, screenY, p.radius + glow, 0, Math.PI * 2);
-                        ctx.fillStyle = darkMode ? `hsla(${p.colorHue}, 80%, 70%, 0.4)` : `hsla(${p.colorHue}, 70%, 50%, 0.3)`;
-                        ctx.fill();
-                    }
-                }
+
+            for (let p of points) {
+                const x = p.x * width;
+                const y = p.y * height;
+                const flicker = prefersReducedMotion ? 1 : 0.72 + Math.sin(sweep * 2.2 + p.phase) * 0.28;
+
+                ctx.beginPath();
+                ctx.arc(x, y, p.radius + 1.8, 0, Math.PI * 2);
+                ctx.fillStyle = darkMode ? `rgba(118, 132, 76, ${0.032 * flicker})` : `rgba(63, 126, 24, ${0.07 * flicker})`;
+                ctx.fill();
+
+                ctx.beginPath();
+                ctx.arc(x, y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = darkMode ? `rgba(136, 149, 85, ${0.22 * flicker})` : `rgba(63, 126, 24, ${0.46 * flicker})`;
+                ctx.fill();
             }
-            
-            requestAnimationFrame(draw);
-        }
 
-        function handleMove(clientX, clientY) {
-            mouseX = clientX;
-            mouseY = clientY;
-        }
-
-        function handleLeave() {
-            mouseX = null;
-            mouseY = null;
+            if (!prefersReducedMotion) {
+                const scanY = (sweep * 90) % (height + 220) - 110;
+                const gradient = ctx.createLinearGradient(0, scanY - 80, 0, scanY + 80);
+                gradient.addColorStop(0, 'rgba(118, 132, 76, 0)');
+                gradient.addColorStop(0.5, darkMode ? 'rgba(118, 132, 76, 0.024)' : 'rgba(63, 126, 24, 0.05)');
+                gradient.addColorStop(1, 'rgba(118, 132, 76, 0)');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, scanY - 80, width, 160);
+                sweep += 0.006;
+                requestAnimationFrame(draw);
+            }
         }
 
         resize();
@@ -388,17 +555,6 @@
             resize();
             initPoints();
         });
-        
-        window.addEventListener('mousemove', (e) => handleMove(e.clientX, e.clientY));
-        window.addEventListener('mouseleave', handleLeave);
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length) handleMove(e.touches[0].clientX, e.touches[0].clientY);
-        });
-        window.addEventListener('touchstart', (e) => {
-            if (e.touches.length) handleMove(e.touches[0].clientX, e.touches[0].clientY);
-        });
-        window.addEventListener('touchend', handleLeave);
-        window.addEventListener('touchcancel', handleLeave);
     </script>
 </body>
 </html>
