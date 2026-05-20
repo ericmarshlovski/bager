@@ -254,28 +254,34 @@
             box-shadow: 0 14px 30px rgba(45, 58, 38, 0.26), 0 0 0 1px rgba(61,97,31,0.14) inset;
         }
 
-        .avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 1.35rem;
-            border: 1px solid rgba(151,161,97,0.34);
+        .hero-photo {
+            width: min(100%, 420px);
+            aspect-ratio: 16 / 9;
+            margin: 0 auto 1.35rem;
+            border: 1px solid rgba(151,161,97,0.2);
+            border-radius: 5px;
+            overflow: hidden;
             background: #010201;
-            box-shadow:
-                0 0 0 7px rgba(57,72,37,0.032),
-                0 0 26px rgba(57,72,37,0.12),
-                0 0 72px rgba(0,0,0,0.5);
-            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+            clip-path: polygon(0 10%, 6% 0, 100% 0, 100% 88%, 94% 100%, 0 100%);
+            box-shadow: 0 18px 48px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.012) inset;
         }
 
-        .avatar:hover {
-            border-color: var(--olive);
-            box-shadow:
-                0 0 0 8px rgba(151,161,97,0.05),
-                0 0 32px rgba(151,161,97,0.14),
-                0 0 88px rgba(0,0,0,0.55);
-            transform: translateY(-2px);
+        .hero-photo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center 43%;
+            filter: saturate(0.72) contrast(1.05) brightness(0.74);
+        }
+
+        body.light .hero-photo {
+            border-color: rgba(68, 93, 39, 0.18);
+            box-shadow: 0 16px 38px rgba(45,58,38,0.13), 0 0 0 1px rgba(255,255,255,0.62) inset;
+        }
+
+        body.light .hero-photo img {
+            filter: saturate(0.78) contrast(0.98) brightness(0.94);
         }
 
         h1 {
@@ -546,9 +552,8 @@
                 top: -0.72rem;
             }
 
-            .avatar {
-                width: 78px;
-                height: 78px;
+            .hero-photo {
+                width: min(100%, 19rem);
                 margin-bottom: 1rem;
             }
 
@@ -675,7 +680,9 @@
 
     <main class="shell">
         <div class="container">
-            <img src="cat.png" alt="bager" class="avatar" id="avatar" onerror="this.style.display='none'">
+            <figure class="hero-photo">
+                <img src="cio.jpg" alt="kitap okuyan kişi">
+            </figure>
             <h1>bager</h1>
             <p class="subtitle">komünarların kanı yerde..</p>
 
