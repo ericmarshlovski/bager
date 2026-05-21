@@ -682,7 +682,7 @@
     <main class="shell">
         <div class="container">
             <figure class="hero-photo">
-                <img src="cio.jpg" alt="kitap okuyan kişi">
+                <img src="cio.jpg" alt="cio kitap okuyor">
             </figure>
             <h1>bager</h1>
             <p class="subtitle">komünarların kanı yerde..</p>
@@ -946,19 +946,19 @@
                             artContainer.innerHTML = `<img src="${track.image[2]['#text']}" alt="album art">`;
                         }
                     } else {
-                        trackEl.textContent = 'wele şu an bir şey dinlemiyor..';
+                        trackEl.textContent = 'wele şu an bir şey dinlemiyorum..';
                         artistEl.style.display = 'none';
                         dotEl.classList.remove('live');
                         artContainer.innerHTML = spotifyIcon;
                     }
                 } else {
-                    trackEl.textContent = 'wele şu an bir şey dinlemiyor..';
+                    trackEl.textContent = 'wele şu an bir şey dinlemiyorum..';
                     artistEl.style.display = 'none';
                     dotEl.classList.remove('live');
                     artContainer.innerHTML = spotifyIcon;
                 }
             } catch {
-                trackEl.textContent = 'wele şu an bir şey dinlemiyor..';
+                trackEl.textContent = 'wele şu an bir şey dinlemiyorum..';
                 artistEl.style.display = 'none';
                 dotEl.classList.remove('live');
                 artContainer.innerHTML = spotifyIcon;
