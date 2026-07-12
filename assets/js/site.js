@@ -105,9 +105,18 @@ function initNowPlaying() {
     if (!npTimer) npTimer = setInterval(fetchNowPlaying, 15000);
 }
 
+function initEposta() {
+    const ep = document.querySelector('[data-eposta]');
+    if (!ep || ep.href) return;
+    const kutu = 'nujiyan1871';
+    const sunucu = 'proton.me';
+    ep.href = 'mailto:' + kutu + '@' + sunucu;
+}
+
 function initPage() {
     initPlayer();
     initNowPlaying();
+    initEposta();
 }
 
 async function navigate(url, push) {
