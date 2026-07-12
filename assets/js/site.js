@@ -113,10 +113,25 @@ function initEposta() {
     ep.href = 'mailto:' + kutu + '@' + sunucu;
 }
 
+function initGizli() {
+    const kutu = document.querySelector('.gizli');
+    const img = kutu ? kutu.querySelector('.foto') : null;
+    if (!kutu || !img || !img.dataset.b) return;
+    const on = { src: img.getAttribute('src'), alt: img.getAttribute('alt') };
+    const arka = { src: img.dataset.b, alt: img.dataset.altB };
+    new Image().src = arka.src;
+    kutu.onclick = () => {
+        const acik = img.getAttribute('src') === arka.src;
+        img.src = acik ? on.src : arka.src;
+        img.alt = acik ? on.alt : arka.alt;
+    };
+}
+
 function initPage() {
     initPlayer();
     initNowPlaying();
     initEposta();
+    initGizli();
 }
 
 async function navigate(url, push) {

@@ -137,9 +137,18 @@ main {
     50% { opacity: 0; }
 }
 
-.foto {
-    width: min(100%, 15rem);
+.gizli {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
     margin-bottom: 1.75rem;
+    width: min(100%, 15rem);
+}
+
+.foto {
+    width: 100%;
+    display: block;
 }
 
 h1 {
