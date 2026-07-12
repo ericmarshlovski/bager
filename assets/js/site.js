@@ -30,7 +30,7 @@ function initPlayer() {
         const p = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
         timeEl.textContent = `${fmt(audio.currentTime)} / ${fmt(audio.duration)}`;
         seek.value = p;
-        seek.style.background = `linear-gradient(90deg, #cba6f7 ${p}%, rgba(232, 226, 208, 0.13) ${p}%)`;
+        seek.style.background = `linear-gradient(90deg, #556B2F ${p}%, rgba(232, 226, 208, 0.13) ${p}%)`;
     }
 
     function syncBtn() {
