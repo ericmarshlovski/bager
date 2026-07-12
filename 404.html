@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | ba û bager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/bager/cat.png">
+    <style>
+        :root {
+            --bg: #0e0d0b;
+            --ink: #e8e2d0;
+            --muted: #9a927c;
+            --faint: #6b6455;
+            --red: #c94b3f;
+            color-scheme: dark;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: "IBM Plex Mono", ui-monospace, monospace;
+            font-size: 0.9375rem;
+            line-height: 1.75;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        main { padding: 2rem 1.25rem; }
+        .cmd { color: var(--faint); }
+        .cmd::before { content: "~ $ "; }
+        .err { color: var(--red); margin-bottom: 2rem; }
+        a { color: var(--muted); text-underline-offset: 4px; }
+        a:hover { color: var(--red); }
+        :focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+    </style>
+</head>
+<body>
+    <main>
+        <p class="cmd">cd sayfa</p>
+        <p class="err">cd: sayfa: böyle bir dizin yok..</p>
+        <p><a href="/bager/">cd ~/index</a></p>
+    </main>
+</body>
+</html>
