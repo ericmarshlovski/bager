@@ -84,7 +84,7 @@ async function fetchNowPlaying() {
             artistEl.textContent = track.artist['#text'];
             artistEl.hidden = false;
             dotEl.classList.add('live');
-            const art = track.image?.[2]?.['#text'];
+            const art = track.image?.[3]?.['#text'] || track.image?.[2]?.['#text'];
             if (art) {
                 artEl.src = art;
                 artEl.hidden = false;
