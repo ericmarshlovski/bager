@@ -5,7 +5,7 @@
     --muted: #9a927c;
     --faint: #6b6455;
     --line: rgba(232, 226, 208, 0.13);
-    --red: #c94b3f;
+    --mor: #cba6f7;
     color-scheme: dark;
 }
 
@@ -26,7 +26,7 @@ body {
 }
 
 ::selection {
-    background: var(--red);
+    background: var(--mor);
     color: var(--bg);
 }
 
@@ -39,12 +39,12 @@ a {
 }
 
 a:hover {
-    color: var(--red);
-    text-decoration-color: var(--red);
+    color: var(--mor);
+    text-decoration-color: var(--mor);
 }
 
 :focus-visible {
-    outline: 2px solid var(--red);
+    outline: 2px solid var(--mor);
     outline-offset: 3px;
 }
 
@@ -102,7 +102,7 @@ h1 {
 }
 
 .slogan {
-    color: var(--red);
+    color: var(--mor);
     font-size: 0.9rem;
     margin-top: 0.35rem;
 }
@@ -118,7 +118,7 @@ h1 {
     padding: 0.15rem 0.1rem;
 }
 
-.socials a:hover { color: var(--red); }
+.socials a:hover { color: var(--mor); }
 
 .np {
     margin-top: 2.2rem;
@@ -164,7 +164,7 @@ h1 {
 }
 
 .np-dot.live {
-    background: var(--red);
+    background: var(--mor);
     animation: pulse 1.6s infinite;
 }
 
@@ -205,12 +205,12 @@ h1 {
     text-decoration: none;
 }
 
-.menu a:hover { color: var(--red); }
+.menu a:hover { color: var(--mor); }
 
 .menu a[aria-current="page"] {
     color: var(--ink);
     text-decoration: underline;
-    text-decoration-color: var(--red);
+    text-decoration-color: var(--mor);
     text-underline-offset: 5px;
 }
 
@@ -358,7 +358,7 @@ h1 {
     padding: 0;
 }
 
-.player-btn:hover { color: var(--red); }
+.player-btn:hover { color: var(--mor); }
 
 .player-seek {
     flex: 1;
@@ -375,7 +375,7 @@ h1 {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: var(--red);
+    background: var(--mor);
     border: none;
 }
 
@@ -383,7 +383,7 @@ h1 {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: var(--red);
+    background: var(--mor);
     border: none;
 }
 
