@@ -334,6 +334,68 @@ h1 {
     color: var(--muted);
 }
 
+.player {
+    margin: 2.4rem auto 0;
+    width: 100%;
+    max-width: 26rem;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    background: var(--raised);
+    padding: 0.85rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+}
+
+.player-btn {
+    font: inherit;
+    font-size: 0.85rem;
+    color: var(--muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    padding: 0;
+}
+
+.player-btn:hover { color: var(--red); }
+
+.player-seek {
+    flex: 1;
+    appearance: none;
+    -webkit-appearance: none;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--line);
+    cursor: pointer;
+}
+
+.player-seek::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--red);
+    border: none;
+}
+
+.player-seek::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--red);
+    border: none;
+}
+
+.player-time {
+    font-size: 0.72rem;
+    color: var(--faint);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+.siir p { white-space: pre-line; }
+
 @media (max-width: 420px) {
     body { font-size: 0.875rem; }
 

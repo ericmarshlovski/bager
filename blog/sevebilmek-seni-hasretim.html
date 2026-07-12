@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YAZI BAŞLIĞI | ba û bager</title>
-    <meta name="description" content="YAZI BAŞLIĞI">
+    <title>sevebilmek seni hasretim, sevdam ülkem kürdistan gibi... | ba û bager</title>
+    <meta name="description" content="sevebilmek seni hasretim, sevdam ülkem kürdistan gibi...">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -19,14 +19,18 @@
             <a href="../xxx.html">xxx/</a>
         </nav>
 
-        <h1>yazı başlığı</h1>
-        <p class="post-meta">GG ay YYYY</p>
+        <h1>sevebilmek seni hasretim, sevdam ülkem kürdistan gibi...</h1>
+        <p class="post-meta">12 temmuz 2026</p>
 
-        <div class="prose">
-            <p>ilk paragraf..</p>
+        <div class="player">
+            <button class="player-btn" id="player-btn" aria-label="çal">[çal]</button>
+            <input class="player-seek" id="player-seek" type="range" min="0" max="100" step="0.1" value="0" aria-label="konum">
+            <span class="player-time" id="player-time">0:00 / 0:00</span>
+            <audio id="player-audio" src="../assets/audio/sevebilmek-seni-hasretim.mp3" preload="metadata"></audio>
+        </div>
 
-            <h2>bir ara başlık</h2>
-            <p>devamı..</p>
+        <div class="prose siir">
+            <p>sözler yakında..</p>
         </div>
     </main>
 
@@ -34,5 +38,7 @@
         no ai<br>
         <a href="https://github.com/ericmarshlovski/bager" target="_blank" rel="noopener">copy</a>
     </footer>
+
+    <script src="../assets/js/player.js"></script>
 </body>
 </html>
