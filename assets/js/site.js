@@ -112,7 +112,7 @@ function initPage() {
 
 async function navigate(url, push) {
     try {
-        const res = await fetch(url);
+        const res = await fetch(url, { cache: 'no-cache' });
         if (!res.ok) {
             location.href = url;
             return;
