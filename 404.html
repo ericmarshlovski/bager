@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ba û bager</title>
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#000000">
+    <style>
+        :root { color-scheme: dark; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            background: #000;
+            color: #fff;
+            font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+            font-size: 0.9375rem;
+            line-height: 1.75;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        main { padding: 2rem 1.25rem; }
+        p + p { margin-top: 1.5rem; }
+        a { color: #8b8b8b; text-underline-offset: 4px; }
+        a:hover { color: #ed1c24; }
+    </style>
+</head>
+<body>
+    <main>
+        <p>burası taşındı..</p>
+        <p><a href="https://berxwedanjiyane.org/">berxwedanjiyane.org</a></p>
+    </main>
+    <script>
+        (function () {
+            var yol = location.pathname.replace(/^\/bager\/?/, '');
+            location.replace('https://berxwedanjiyane.org/' + yol + location.search + location.hash);
+        })();
+    </script>
+</body>
+</html>
